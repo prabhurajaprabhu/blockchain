@@ -21,5 +21,7 @@ namespace OnBoarding.Entities
         public string KnownDisease { get; set; }
 
         public DateTime TreatmentDate { get; set; }
+
+        public string DiseaseType { get; set; }
     }
 }
