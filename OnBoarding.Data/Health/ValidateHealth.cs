@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace OnBoarding.Data
 {
-    public class ValidateHealth: IRequestHandler<HealthValidateRequest, Health>
+    public class ValidateHealth : IRequestHandler<HealthValidateRequest, Health>
     {
         private readonly IRepository repository;
         public ValidateHealth(IRepository repository)
@@ -15,7 +15,7 @@ namespace OnBoarding.Data
 
         public Health Handle(HealthValidateRequest query)
         {
-            var health = this.repository.Query<Entities.Health>().Where(i => i.MobileNumber == query.MobileNumber && i.PatientName == query.PatientName).FirstOrDefault();
+            var health = this.repository.Query<Entities.Health>().Where(i => i.MobileNumber == query.MobileNumber && i.PatientName == query.PatientName && i.DiseaseType == query.DiseaseType && i.TreatmentDate >= query.PolicyStartDate).FirstOrDefault();
             if (health == null)
             {
                 return new Health
