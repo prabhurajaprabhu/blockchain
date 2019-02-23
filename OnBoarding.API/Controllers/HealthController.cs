@@ -19,12 +19,12 @@ namespace OnBoardingWEB.Controllers
             this.mediatr = mediatr;
         }
 
-        [HttpGet]
-        [Route("getHealthDetail/{mobileNumber}/{patientName}")]
+        [HttpPost]
+        [Route("getHealthDetail")]
         // GET: api/Health
-        public Health GetHealthDetail(int mobileNumber, string patientName)
+        public Health GetHealthDetail(Health healthDetail)
         {
-            var response = this.mediatr.Send(new HealthValidateRequest(mobileNumber, patientName));
+            var response = this.mediatr.Send(new HealthValidateRequest(healthDetail.MobileNumber, healthDetail.PatientName, healthDetail.TreatmentDate, healthDetail.DiseaseType));
 
             return response.Result;
         }
